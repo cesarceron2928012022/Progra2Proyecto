@@ -51,9 +51,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/About">Galeria</a></li>
-                        <li><a runat="server" href="~/Contact">Agregar Foto</a></li>
-                        <li><a runat="server" href="~/Contact">Presentación</a></li>
+                        <li><a runat="server" href="~/Gallery">Galeria</a></li>
+                        <li><a runat="server" href="~/NewPhoto">Agregar Foto</a></li>
+                        <li><a runat="server" href="~/Presentation">Presentación</a></li>
                     </ul>
                     <%if (Context.Request.Cookies["user"] == null)
                         {
