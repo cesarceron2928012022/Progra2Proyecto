@@ -3,6 +3,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace Progra2Proyecto
 {
@@ -29,10 +30,13 @@ namespace Progra2Proyecto
             cmd.Connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.Read())
-            {
-                //Agregamos una sesion de usuario
-                //Session["usuariologueado"] = TxtUser.Text;
-                Response.Redirect("/");                
+            {                                
+                HttpCookie cookie = new HttpCookie("user", TxtUser.Text);
+                DateTime time = DateTime.Now;
+                cookie.Expires = time.AddMinutes(1);
+                Response.Cookies.Add(cookie);                
+
+                Response.Redirect("/");
             }
             else LblError.Text = "Error de Usuario o Contraseña";            
             cmd.Connection.Close();
