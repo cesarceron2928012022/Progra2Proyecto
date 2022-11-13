@@ -11,7 +11,7 @@ namespace Progra2Proyecto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
         
         protected void BtnIngresar_Click(object sender, EventArgs e)
@@ -34,7 +34,12 @@ namespace Progra2Proyecto
                 HttpCookie cookie = new HttpCookie("user", TxtUser.Text);
                 DateTime time = DateTime.Now;
                 cookie.Expires = time.AddMinutes(1);
-                Response.Cookies.Add(cookie);                
+                Response.Cookies.Add(cookie);
+
+                if (Request.QueryString["returnUrl"] != null)
+                {
+                    Response.Redirect(Request.QueryString["returnUrl"]);
+                }
 
                 Response.Redirect("/");
             }
