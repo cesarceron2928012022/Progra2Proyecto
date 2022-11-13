@@ -26,3 +26,24 @@
     padding: 40px;
     justify-content: center;
 }
+
+.photoContainer {
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.col {
+    max-width:400px;
+    margin: 15px;
+    height:auto;
+    height:80%;
+}
+
+.photoDetails {
+    font-size: 2rem;
+}
+
+.firtItem {
+    margin-top: 0;
+}

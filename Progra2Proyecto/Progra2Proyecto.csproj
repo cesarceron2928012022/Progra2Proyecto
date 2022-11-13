@@ -133,6 +133,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="NewPhoto.aspx" />
+    <Content Include="Photo.aspx" />
     <Content Include="Presentation.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="NewPhoto.aspx.designer.cs">
       <DependentUpon>NewPhoto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Photo.aspx.cs">
+      <DependentUpon>Photo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Photo.aspx.designer.cs">
+      <DependentUpon>Photo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentation.aspx.cs">
       <DependentUpon>Presentation.aspx</DependentUpon>

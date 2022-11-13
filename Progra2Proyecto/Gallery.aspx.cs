@@ -8,19 +8,33 @@ namespace Progra2Proyecto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmd = connection.CreateCommand();
-            SqlDataReader reader;
+            if (!Page.IsPostBack)
+            { 
+                string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
+                SqlConnection connection = new SqlConnection(connectionString);
+                SqlCommand cmd = connection.CreateCommand();
+                SqlDataReader reader;
 
-            string _query = "select * from Photo";
-            cmd.CommandText = _query;
+                string _query = "select * from Photo";
+                cmd.CommandText = _query;
 
-            cmd.Connection.Open();
-            reader = cmd.ExecuteReader();
-            
-            ListPhotos.DataSource = reader;
-            ListPhotos.DataBind();                
+                cmd.Connection.Open();
+                reader = cmd.ExecuteReader();
+
+                ListPhotos.DataSource = reader;
+                ListPhotos.DataBind();
+            }                              
         }
+
+        protected void BtnPhoto_Click(object sender, EventArgs e)
+        {
+            var a = ((System.Web.UI.Control)sender).ID;
+            Response.Redirect("/Photo");
+        }
+
+        //protected void BtnPhoto_Click(object sender, EventArgs e)
+        //{
+        //    this.Title = "prueba";
+        //}
     }
 }
