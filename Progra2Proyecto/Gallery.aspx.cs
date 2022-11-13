@@ -23,6 +23,7 @@ namespace Progra2Proyecto
 
                 ListPhotos.DataSource = reader;
                 ListPhotos.DataBind();
+                cmd.Connection.Close();
             }                              
         }
 
