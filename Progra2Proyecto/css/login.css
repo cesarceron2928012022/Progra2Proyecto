@@ -7,3 +7,22 @@
     min-height: 100%;
     padding: 20px;
 }
+
+.photoCard {
+    list-style: none;
+    font-size: 2rem;
+    text-align:center;
+}
+
+.photo {
+    border-radius: 10px;
+    background-color: azure;
+}
+
+.photoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 40px;
+    padding: 40px;
+    justify-content: center;
+}
