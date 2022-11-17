@@ -7,13 +7,13 @@ using System.Web;
 
 namespace Progra2Proyecto
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            LblError.Text = "";
         }
-        
+
         protected void BtnIngresar_Click(object sender, EventArgs e)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
@@ -22,7 +22,7 @@ namespace Progra2Proyecto
             SqlDataReader reader;
 
             string _query = "select * from Users where [user] = @user and [password] = @password";
-            cmd.CommandText = _query;            
+            cmd.CommandText = _query;
 
             cmd.Parameters.Add("@user", SqlDbType.VarChar, 50).Value = TxtUser.Text;
             cmd.Parameters.Add("@password", SqlDbType.VarChar, 200).Value = TxtPassword.Text.GetSHA256();
@@ -30,7 +30,7 @@ namespace Progra2Proyecto
             cmd.Connection.Open();
             reader = cmd.ExecuteReader();
             if (reader.Read())
-            {                                
+            {
                 HttpCookie cookie = new HttpCookie("user", TxtUser.Text);
                 DateTime time = DateTime.Now;
                 cookie.Expires = time.AddMinutes(1);
@@ -43,7 +43,7 @@ namespace Progra2Proyecto
 
                 Response.Redirect("/");
             }
-            else LblError.Text = "Error de Usuario o Contraseña";            
+            else LblError.Text = "Error de Usuario o Contraseña";
             cmd.Connection.Close();
         }
     }
