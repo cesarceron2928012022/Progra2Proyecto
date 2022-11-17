@@ -48,6 +48,12 @@
     margin-top: 0;
 }
 
+.container-btn-eliminar {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+}
+
 .col-comments {
     max-width: 800px;
     min-width:400px;

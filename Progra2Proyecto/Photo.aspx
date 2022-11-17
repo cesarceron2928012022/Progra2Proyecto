@@ -5,7 +5,10 @@
     <div class="photoContainer">
         <%--<img class="col photo" width="300" height="500" src="/Photos/12112022085656.png" alt="prueba" />--%>
         <asp:Image CssClass="col photo" Width="300" Height="500" ID="ImgPhoto" runat="server" />
-        <div class="col photoDetails">  
+        <div class="col photoDetails">
+            <div class="container-btn-eliminar">
+                <asp:Button Visible="false" CssClass="btn btn-danger" ID="BtnEliminar" runat="server" Text="Eliminar" OnClick="BtnEliminar_Click" />
+            </div>            
             <p class="firtItem">
                 <strong>Título:</strong>                
                 <asp:Label ID="LblTitulo" runat="server" Text=""></asp:Label>

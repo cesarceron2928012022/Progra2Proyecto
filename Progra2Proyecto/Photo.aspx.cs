@@ -25,7 +25,7 @@ namespace Progra2Proyecto
                     SqlCommand cmd = connection.CreateCommand();
                     SqlDataReader reader;
 
-                    string _query = "select title, photoFile,[description] from Photo where idPhoto = @idPhoto";
+                    string _query = "select title, photoFile,[description],[owner] from Photo where idPhoto = @idPhoto";
                     cmd.CommandText = _query;
 
                     cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
@@ -38,6 +38,11 @@ namespace Progra2Proyecto
                         LblTitulo.Text = reader.GetString(0);
                         LblDescription.Text = reader.GetString(2);
                         ImgPhoto.ImageUrl = $"/Photos/{reader.GetString(1)}";
+                        
+                        if (Request.Cookies["user"] != null && Request.Cookies["user"].Value == reader.GetString(3))
+                        {
+                            BtnEliminar.Visible = true;
+                        }
                     }
                     reader.Close();
                     cmd.Connection.Close();
@@ -49,8 +54,8 @@ namespace Progra2Proyecto
                     cmd.Connection.Open();
                     reader = cmd.ExecuteReader();
                     ListComments.DataSource = reader;
-                    ListComments.DataBind();
-                    cmd.Connection.Close();
+                    ListComments.DataBind();                    
+                    cmd.Connection.Close();                    
                 }
             }
 			catch (Exception)
@@ -97,6 +102,32 @@ namespace Progra2Proyecto
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        protected void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var idPhoto = Request.QueryString["id"];
+                string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
+                SqlConnection connection = new SqlConnection(connectionString);
+                SqlCommand cmd = connection.CreateCommand();
+
+                string _command = "delete from Photo where idPhoto = @idPhoto";
+
+                cmd = connection.CreateCommand();
+                cmd.CommandText = _command;
+                cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                Response.Redirect("/Gallery");
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
