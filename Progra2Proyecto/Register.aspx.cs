@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Progra2Proyecto.Utils;
+using System;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Progra2Proyecto.Utils;
+using System.Data.SqlClient;
 
 namespace Progra2Proyecto
 {
