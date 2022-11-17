@@ -1,13 +1,13 @@
-﻿using System;
-using System.Configuration;
+﻿using Progra2Proyecto.Utils;
+using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.Remoting.Messaging;
 
 namespace Progra2Proyecto
 {
     public partial class Photo : System.Web.UI.Page
     {
+        private SqlConnection _connection = ConnectionDB.Get();
         protected void Page_Load(object sender, EventArgs e)
         {
 			try
@@ -19,10 +19,8 @@ namespace Progra2Proyecto
                 if (!Page.IsPostBack)
                 {
                     var idPhoto = Request.QueryString["id"];
-
-                    string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
-                    SqlConnection connection = new SqlConnection(connectionString);
-                    SqlCommand cmd = connection.CreateCommand();
+                                        
+                    SqlCommand cmd = _connection.CreateCommand();
                     SqlDataReader reader;
 
                     string _query = "select title, photoFile,[description],[owner] from Photo where idPhoto = @idPhoto";
@@ -48,13 +46,16 @@ namespace Progra2Proyecto
                     cmd.Connection.Close();
 
                     string _queryComments = "select * from Comment where idPhoto = @idPhoto order by 1 desc";
-                    cmd = connection.CreateCommand();
+                    cmd = _connection.CreateCommand();
                     cmd.CommandText = _queryComments;
                     cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
+
                     cmd.Connection.Open();
+
                     reader = cmd.ExecuteReader();
                     ListComments.DataSource = reader;
                     ListComments.DataBind();                    
+                    
                     cmd.Connection.Close();                    
                 }
             }
@@ -69,14 +70,12 @@ namespace Progra2Proyecto
             {
                 var idPhoto = Request.QueryString["id"];
                 if (Request.Cookies["user"] == null) Response.Redirect($"/Login.aspx?returnUrl=/Photo?id={idPhoto}");                
-                string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand cmd = connection.CreateCommand();
-
+                
+                SqlCommand cmd = _connection.CreateCommand();
                 string command = @"insert Comment([user],body,createdDate,idPhoto)
                                     values(@user,@body,@createdDate,@idPhoto)";
 
-                cmd = connection.CreateCommand();
+                cmd = _connection.CreateCommand();
                 cmd.CommandText = command;
                 cmd.Parameters.Add("@user", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
                 cmd.Parameters.Add("@body", SqlDbType.VarChar, 150).Value = TxtComment.Text;
@@ -89,7 +88,7 @@ namespace Progra2Proyecto
 
                 SqlDataReader reader;
                 string _queryComments = "select * from Comment where idPhoto = @idPhoto order by 1 desc";
-                cmd = connection.CreateCommand();
+                cmd = _connection.CreateCommand();
                 cmd.CommandText = _queryComments;
                 cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
                 cmd.Connection.Open();
@@ -110,14 +109,12 @@ namespace Progra2Proyecto
         {
             try
             {
-                var idPhoto = Request.QueryString["id"];
-                string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand cmd = connection.CreateCommand();
+                var idPhoto = Request.QueryString["id"];                
+                SqlCommand cmd = _connection.CreateCommand();
 
                 string _command = "delete from Photo where idPhoto = @idPhoto";
 
-                cmd = connection.CreateCommand();
+                cmd = _connection.CreateCommand();
                 cmd.CommandText = _command;
                 cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
                 cmd.Connection.Open();

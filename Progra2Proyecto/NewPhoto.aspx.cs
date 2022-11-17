@@ -1,14 +1,14 @@
-﻿using System;
-using System.Configuration;
+﻿using Progra2Proyecto.Utils;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Xml.Linq;
 
 namespace Progra2Proyecto
 {
     public partial class NewPhoto : System.Web.UI.Page
     {
+        private SqlConnection _connection = ConnectionDB.Get();
         protected void Page_Load(object sender, EventArgs e)
         {
             var returnUrl = Request.ServerVariables["SCRIPT_NAME"];
@@ -27,10 +27,8 @@ namespace Progra2Proyecto
 
                 string fileName = DateTime.Now.ToString("ddMMyyyyhhmmss") + extension;
                 FilePhoto.SaveAs(Server.MapPath("~/Photos/") + fileName);
-
-                string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand cmd = connection.CreateCommand();
+                
+                SqlCommand cmd = _connection.CreateCommand();
 
                 string command = @"insert Photo(title, [photoFile], [description], createdDate, [owner])
                                     values(@title, @photoFile, @description, @createdDate, @owner)";                

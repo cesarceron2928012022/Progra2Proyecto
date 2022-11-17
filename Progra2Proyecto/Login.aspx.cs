@@ -1,6 +1,5 @@
 ﻿using Progra2Proyecto.Utils;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
@@ -9,16 +8,15 @@ namespace Progra2Proyecto
 {
     public partial class Login2 : System.Web.UI.Page
     {
+        private SqlConnection _connection = ConnectionDB.Get();
         protected void Page_Load(object sender, EventArgs e)
         {
             LblError.Text = "";
         }
 
         protected void BtnIngresar_Click(object sender, EventArgs e)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBSharePhotos"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmd = connection.CreateCommand();
+        {                                    
+            SqlCommand cmd = _connection.CreateCommand();
             SqlDataReader reader;
 
             string _query = "select * from Users where [user] = @user and [password] = @password";

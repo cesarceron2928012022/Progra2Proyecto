@@ -260,6 +260,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ConnectionDB.cs" />
     <Compile Include="Utils\EncryptString.cs" />
   </ItemGroup>
   <ItemGroup>
