@@ -14,7 +14,7 @@ namespace Progra2Proyecto
                 SqlCommand cmd = _connection.CreateCommand();
                 SqlDataReader reader;
 
-                string _query = "select * from Photo";
+                string _query = "select * from Photo order by createdDate desc";
                 cmd.CommandText = _query;
 
                 cmd.Connection.Open();
