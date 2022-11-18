@@ -19,32 +19,27 @@ namespace Progra2Proyecto
         {            
             try
             {
-                if (!FilePhoto.HasFile) ErrorMessage.Text = "Debe subir un archivo";
+                if (FilePhoto.HasFile)
+                {
+                    SqlCommand cmd = _connection.CreateCommand();
 
-                string extension = Path.GetExtension(FilePhoto.FileName);
-                if (extension != ".jpg" && extension != ".jpeg" && extension != "png")
-                    ErrorMessage.Text = "Debe subir un archivo";
+                    string command = @"insert Photo(title, [photoFile], [description], createdDate, [owner])
+                                    values(@title, @photoFile, @description, @createdDate, @owner)";
 
-                string fileName = DateTime.Now.ToString("ddMMyyyyhhmmss") + extension;
-                FilePhoto.SaveAs(Server.MapPath("~/Photos/") + fileName);
-                
-                SqlCommand cmd = _connection.CreateCommand();
+                    cmd.CommandText = command;
+                    cmd.Parameters.Add("@title", SqlDbType.VarChar, 150).Value = TxtTitle.Text;
+                    cmd.Parameters.Add("@photoFile", SqlDbType.Image).Value = FilePhoto.FileBytes;
+                    cmd.Parameters.Add("@description", SqlDbType.VarChar, 250).Value = TxtDescription.Text;
+                    cmd.Parameters.Add("@createdDate", SqlDbType.Date).Value = DateTime.Now;
+                    cmd.Parameters.Add("@owner", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
 
-                string command = @"insert Photo(title, [photoFile], [description], createdDate, [owner])
-                                    values(@title, @photoFile, @description, @createdDate, @owner)";                
+                    cmd.Connection.Close();
 
-                cmd.CommandText = command;
-                cmd.Parameters.Add("@title", SqlDbType.VarChar, 150).Value = TxtTitle.Text;
-                cmd.Parameters.Add("@photoFile", SqlDbType.VarChar, 150).Value = fileName;
-                cmd.Parameters.Add("@description", SqlDbType.VarChar, 250).Value = TxtDescription.Text;
-                cmd.Parameters.Add("@createdDate", SqlDbType.Date).Value = DateTime.Now;
-                cmd.Parameters.Add("@owner", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                
-                cmd.Connection.Close();
-
-                Response.Redirect("/");
+                    Response.Redirect("/");
+                }
+                else ErrorMessage.Text = "Debe subir un archivo";              
             }
             catch (Exception)
             {

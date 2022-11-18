@@ -31,7 +31,7 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="TxtDescription" CssClass="col-md-2 control-label">Descripción</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="TxtDescription" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="TxtDescription" CssClass="form-control" TextMode="MultiLine" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="TxtDescription"
                     CssClass="text-danger" ErrorMessage="La descripción es requerida." />
             </div>

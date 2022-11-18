@@ -1,7 +1,9 @@
 ﻿using Progra2Proyecto.Utils;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace Progra2Proyecto
 {
@@ -23,7 +25,7 @@ namespace Progra2Proyecto
                     SqlCommand cmd = _connection.CreateCommand();
                     SqlDataReader reader;
 
-                    string _query = "select title, photoFile,[description],[owner] from Photo where idPhoto = @idPhoto";
+                    string _query = "select title, photoFile,[description],[owner],createdDate from Photo where idPhoto = @idPhoto";
                     cmd.CommandText = _query;
 
                     cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
@@ -32,10 +34,14 @@ namespace Progra2Proyecto
                     reader = cmd.ExecuteReader();                    
 
                     if (reader.Read())
-                    {
+                    {                        
                         LblTitulo.Text = reader.GetString(0);
                         LblDescription.Text = reader.GetString(2);
-                        ImgPhoto.ImageUrl = $"/Photos/{reader.GetString(1)}";
+                        LblOwner.Text = reader.GetString(3);
+                        LblCreatedDate.Text = reader.GetDateTime(4).ToString("d/M/yyyy HH:mm:ss tt");
+
+
+                        ImgPhoto.ImageUrl = $"data:image/jpg;base64,{Convert.ToBase64String((byte[])reader["photoFile"])}";                
                         
                         if (Request.Cookies["user"] != null && Request.Cookies["user"].Value == reader.GetString(3))
                         {
