@@ -10,9 +10,9 @@ namespace Progra2Proyecto
             {
                 Request.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
                 Request.Cookies["user"].Value = string.Empty;
-            }                        
+            }
 
-            Request.Cookies.Clear();            
+            Request.Cookies.Clear();
         }
     }
 }

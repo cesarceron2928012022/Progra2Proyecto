@@ -11,7 +11,7 @@ namespace Progra2Proyecto
 {
 
 
-    public partial class _Default
+    public partial class Favorites
     {
 
         /// <summary>

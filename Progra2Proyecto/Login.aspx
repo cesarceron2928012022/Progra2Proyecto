@@ -1,40 +1,47 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Progra2Proyecto.Login" %>
+﻿<%@ Page Title="Inicio de Sesión" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Progra2Proyecto.Login2" %>
 
-<!DOCTYPE html>
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <h2><%: Title %>.</h2>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />        
-    <link href="css/login.css" rel="stylesheet" />
-</head>
-<body class="bg-light">
-    <div class="wrapper">
-        <div class="formcontent">
-            <form id="formulario_login" runat="server">
-                <div class="form-control">
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                <div class="form-horizontal">                    
+                    <hr />
                     <div class="row">
                         <asp:Label runat="server" CssClass="alert-danger" ID="LblError"></asp:Label>
                     </div>
-                    <div class="row">
-                        <asp:Label class="h2" ID="LblLogin" runat="server" Text="Bienvenido/a"></asp:Label>
+                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                        <p class="text-danger">
+                            <asp:Literal runat="server" ID="FailureText" />
+                        </p>
+                    </asp:PlaceHolder>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="TxtUser" CssClass="col-md-2 control-label">Usuario:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="TxtUser" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="TxtUser"
+                                CssClass="text-danger" ErrorMessage="El usuario es requerido." />
+                        </div>
                     </div>
-                    <div>
-                        <asp:Label ID="LblUser" runat="server" Text="Usuario:"></asp:Label>
-                        <asp:TextBox ID="TxtUser" CssClass="form-control" runat="server" placeholder="Usuario"></asp:TextBox>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="TxtPassword" CssClass="col-md-2 control-label">Contraseña</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="TxtPassword" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="TxtPassword" 
+                                CssClass="text-danger" ErrorMessage="La contraseña es requerida" />
+                        </div>
                     </div>
-                    <div>
-                        <asp:Label ID="LblPassword" runat="server" Text="Contraseña:"></asp:Label>
-                        <asp:TextBox ID="TxtPassword" CssClass="form-control" TextMode="Password" runat="server" placeholder="Contraseña"></asp:TextBox>
-                    </div>
-                    <hr />                    
-                    
-                    <div class="row">
-                        <asp:Button ID="BtnIngresar" CssClass="btn btn-primary btn-dark" runat="server" Text="Ingresar" OnClick="BtnIngresar_Click" />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <asp:Button runat="server"  Text="Ingresar" CssClass="btn btn-primary" ID="BtnIngresar" OnClick="BtnIngresar_Click" />
+                        </div>
                     </div>
                 </div>
-            </form>
+                <p>                    
+                    <a href="/Register">Registrar un nuevo usuario</a>
+                </p>
+            </section>
         </div>
-    </div>   
-</body>
-</html>
+    </div>
+</asp:Content>

@@ -11,7 +11,7 @@ namespace Progra2Proyecto
 {
 
 
-    public partial class About
+    public partial class Contact
     {
     }
 }

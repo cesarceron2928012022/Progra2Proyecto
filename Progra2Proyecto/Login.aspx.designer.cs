@@ -11,17 +11,8 @@ namespace Progra2Proyecto
 {
 
 
-    public partial class Login
+    public partial class Login2
     {
-
-        /// <summary>
-        /// formulario_login control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formulario_login;
 
         /// <summary>
         /// LblError control.
@@ -33,22 +24,22 @@ namespace Progra2Proyecto
         protected global::System.Web.UI.WebControls.Label LblError;
 
         /// <summary>
-        /// LblLogin control.
+        /// ErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblLogin;
+        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
 
         /// <summary>
-        /// LblUser control.
+        /// FailureText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUser;
+        protected global::System.Web.UI.WebControls.Literal FailureText;
 
         /// <summary>
         /// TxtUser control.
@@ -58,15 +49,6 @@ namespace Progra2Proyecto
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtUser;
-
-        /// <summary>
-        /// LblPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblPassword;
 
         /// <summary>
         /// TxtPassword control.

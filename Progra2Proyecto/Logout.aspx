@@ -9,7 +9,7 @@
 <body>
     <script>        
         document.cookie = "user=; expires= Thu, 21 Aug 2014 20:00:00 UTC";
-        window.location.href = "/Login";        
+        window.location.href = "/";        
     </script>     
 </body>
 </html>

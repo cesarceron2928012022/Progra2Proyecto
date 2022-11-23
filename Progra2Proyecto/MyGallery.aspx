@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Galeria" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Gallery.aspx.cs" Inherits="Progra2Proyecto.Gallery" %>
+﻿<%@ Page Title="Mi Galería" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyGallery.aspx.cs" Inherits="Progra2Proyecto.MyGallery" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <center><h2><%: Title %>.</h2></center>
@@ -18,7 +18,7 @@
                             <a class="btn btn-primary btn-dark" href="/Photo?id=<%# Eval("idPhoto") %>">Ver más</a>
                         </div>
                     </li>
-                </ItemTemplate>                
+                </ItemTemplate>               
             </asp:Repeater>
         </ul>
     </div>
