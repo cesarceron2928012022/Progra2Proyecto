@@ -51,7 +51,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/Gallery">Galeria</a></li>
+                        <li><a runat="server" href="~/Gallery">Galería</a></li>
+                        <li><a runat="server" href="~/MyGallery">Mi Galería</a></li>
                         <li><a runat="server" href="~/NewPhoto">Agregar Foto</a></li>
                         <li><a runat="server" href="~/About">Acerca de</a></li>
                     </ul>

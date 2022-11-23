@@ -139,6 +139,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="MyGallery.aspx" />
     <Content Include="NewPhoto.aspx" />
     <Content Include="Photo.aspx" />
     <Content Include="Register.aspx" />
@@ -214,6 +215,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyGallery.aspx.cs">
+      <DependentUpon>MyGallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyGallery.aspx.designer.cs">
+      <DependentUpon>MyGallery.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewPhoto.aspx.cs">
       <DependentUpon>NewPhoto.aspx</DependentUpon>
