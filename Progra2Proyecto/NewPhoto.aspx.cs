@@ -30,7 +30,7 @@ namespace Progra2Proyecto
                     cmd.Parameters.Add("@title", SqlDbType.VarChar, 150).Value = TxtTitle.Text;
                     cmd.Parameters.Add("@photoFile", SqlDbType.Image).Value = FilePhoto.FileBytes;
                     cmd.Parameters.Add("@description", SqlDbType.VarChar, 250).Value = TxtDescription.Text;
-                    cmd.Parameters.Add("@createdDate", SqlDbType.Date).Value = DateTime.Now;
+                    cmd.Parameters.Add("@createdDate", SqlDbType.DateTime).Value = DateTime.Now;
                     cmd.Parameters.Add("@owner", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();

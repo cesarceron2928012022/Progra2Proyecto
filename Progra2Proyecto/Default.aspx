@@ -8,7 +8,7 @@
                 <ItemTemplate>
                     <li class="photoCard">                        
                         <a href="/Photo?id=<%# Eval("idPhoto") %>">
-                            <image href width="300" height="500" class="photo" 
+                            <image width="230" height="375" class="photo" 
                                 src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[]) DataBinder.Eval(Container.DataItem, "photoFile")) %>" alt="<%# Eval("title")%>"/>
                         </a>                         
                         <div class="row"><%# Eval("title")%> </div>
