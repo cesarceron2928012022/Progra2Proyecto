@@ -6,7 +6,8 @@
         <asp:Image CssClass="col photo" Width="300" Height="500" ID="ImgPhoto" runat="server" />
         <div class="col photoDetails">
             <div class="container-btn-eliminar">
-                <asp:Button Visible="false" CssClass="btn btn-danger" ID="BtnEliminar" runat="server" Text="Eliminar" OnClick="BtnEliminar_Click" />
+                <asp:Button CssClass="btn btn-primary" ID="BtnFavorite" runat="server" Text="Favorito" OnClick="BtnFavorite_Click" />
+                <asp:Button Visible="false" CssClass="btn btn-danger btn-eliminar" ID="BtnEliminar" runat="server" Text="Eliminar" OnClick="BtnEliminar_Click" />
             </div>            
             <p class="firtItem">
                 <strong>Título:</strong>                

@@ -45,7 +45,7 @@ namespace Progra2Proyecto
                         
                         if (Request.Cookies["user"] != null && Request.Cookies["user"].Value == reader.GetString(3))
                         {
-                            BtnEliminar.Visible = true;
+                            BtnEliminar.Visible = true;                            
                         }
                     }
                     reader.Close();
@@ -131,6 +131,33 @@ namespace Progra2Proyecto
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        protected void BtnFavorite_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var returnUrl = Request.ServerVariables["SCRIPT_NAME"];
+                if (Request.Cookies["user"] == null) Response.Redirect($"/Login.aspx?returnUrl={returnUrl}");
+                var idPhoto = Request.QueryString["id"];
+                SqlCommand cmd = _connection.CreateCommand();
+
+                string _command = @"insert Favorites (idPhoto,idUser)
+                                    select @idPhoto,idUser  from Users where [user] = @user";
+
+                cmd = _connection.CreateCommand();
+                cmd.CommandText = _command;
+                cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
+                cmd.Parameters.Add("@user", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                Response.Redirect("/Gallery");
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

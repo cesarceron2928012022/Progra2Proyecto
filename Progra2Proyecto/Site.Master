@@ -53,6 +53,7 @@
                         <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="~/Gallery">Galería</a></li>
                         <li><a runat="server" href="~/MyGallery">Mi Galería</a></li>
+                        <li><a runat="server" href="~/Favorites">Mis Favoritos</a></li>
                         <li><a runat="server" href="~/NewPhoto">Agregar Foto</a></li>
                         <li><a runat="server" href="~/About">Acerca de</a></li>
                     </ul>
