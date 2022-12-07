@@ -1,0 +1,115 @@
+﻿.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+}
+
+.photoCard {
+    list-style: none;
+    font-size: 2.5rem;
+    text-align:center;
+}
+
+.photo {
+    border-radius: 10px;
+    background-color: azure;
+}
+
+.photoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    gap: 40px;
+    padding: 40px;
+    justify-content: center;
+}
+
+.photoContainer {
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.col {
+    max-width:400px;
+    margin: 15px;
+    height:auto;
+    height:80%;
+}
+
+.photoDetails {
+    font-size: 2rem;
+}
+
+.firtItem {
+    margin-top: 0;
+}
+
+.container-btn-eliminar {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+}
+
+.col-comments {
+    max-width: 800px;
+    min-width:400px;
+    margin: 15px;
+    height: auto;
+    height: 80%;
+}
+
+.comments {
+    margin: 20px 0;
+    display:block;
+    justify-content: center;
+}
+
+.form_comments {
+    display:flex;
+    justify-content:end;
+    flex-wrap:wrap;
+}
+
+.form_comments_text {
+    width: 100%;
+    height: 84px;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 84px;
+    max-height: 300px;
+    padding: 10px;    
+    border: 1px solid #0094ff;
+    margin-bottom: 20px;
+}
+
+.media {
+    border-top: 1px solid #bfbfbf;
+    padding-top:20px;
+    display:flex;
+}
+
+.media img {
+    margin-right:20px;
+}
+
+.media .name {
+    color:#4b65d1;
+    margin-bottom:0;
+}
+.media .name span {
+    font-size:12px;
+    color:#464646;
+    margin-left:10px;
+}
+
+.media .comment {
+    margin-top:10px;
+}
+
+.btn-eliminar {
+    margin-left: 10px;
+}
