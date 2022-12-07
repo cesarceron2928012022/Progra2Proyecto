@@ -31,7 +31,7 @@ namespace Progra2Proyecto
             {
                 HttpCookie cookie = new HttpCookie("user", TxtUser.Text);
                 DateTime time = DateTime.Now;
-                cookie.Expires = time.AddMinutes(1);
+                cookie.Expires = time.AddHours(1);
                 Response.Cookies.Add(cookie);
 
                 if (Request.QueryString["returnUrl"] != null)
