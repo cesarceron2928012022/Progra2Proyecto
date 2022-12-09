@@ -143,17 +143,40 @@ namespace Progra2Proyecto
                 if (Request.Cookies["user"] == null) Response.Redirect($"/Login.aspx?returnUrl={returnUrl}");
                 var idPhoto = Request.QueryString["id"];
                 SqlCommand cmd = _connection.CreateCommand();
+                SqlDataReader reader;
 
-                string _command = @"insert Favorites (idPhoto,idUser)
-                                    select @idPhoto,idUser  from Users where [user] = @user";
+                string _query = @"select count(1) as existe from Favorites f
+                                    inner join Users u on u.idUser = f.idUser
+                                    where u.[user] = @user and f.idPhoto = @idPhoto ";
 
-                cmd = _connection.CreateCommand();
-                cmd.CommandText = _command;
+                cmd.CommandText = _query;
                 cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
                 cmd.Parameters.Add("@user", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
+
                 cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
+                reader = cmd.ExecuteReader();
+                
+
+                bool existe = false;
+
+                if (reader.Read())
+                {
+                    existe = Convert.ToBoolean(reader.GetInt32(0));
+                }
                 cmd.Connection.Close();
+
+                if (!existe) {
+                    string _command = @"insert Favorites (idPhoto,idUser)
+                                    select @idPhoto,idUser  from Users where [user] = @user";
+
+                    cmd = _connection.CreateCommand();
+                    cmd.CommandText = _command;
+                    cmd.Parameters.Add("@idPhoto", SqlDbType.Int).Value = int.Parse(idPhoto);
+                    cmd.Parameters.Add("@user", SqlDbType.VarChar, 50).Value = Request.Cookies["user"].Value;
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();                    
+                }
                 Response.Redirect("/Gallery");
             }
             catch (Exception)
