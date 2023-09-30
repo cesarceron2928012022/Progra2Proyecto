@@ -9,6 +9,7 @@
                 <div class="form-horizontal">                    
                     <hr />
                     <div class="row">
+
                         <asp:Label runat="server" CssClass="alert-danger" ID="LblError"></asp:Label>
                     </div>
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
